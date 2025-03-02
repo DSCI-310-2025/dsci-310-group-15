@@ -22,6 +22,29 @@ The dataset we used covers the diverse conditions of various states in India, it
 A detailed analysis of our work can be found [here](https://github.com/DSCI-310-2025/dsci-310-group-15/blob/main/heart-attack-prediction-analysis.ipynb)
 
 ## Usage
+Use the following steps to reproduce the analysis in a containerized environment:
+
+**1. From your terminal, use the following bash command to clone this repo to your local working directory**
+```
+git clone https://github.com/DSCI-310-2025/dsci-310-group-15.git
+```
+**2. Make sure the Docker is running, and then use to following bash command to set up environment**
+For Windows users:
+```
+bash script/Wins_setup_jupyter.sh
+```
+For Mac users:
+```
+bash script/Mac_setup_jupyter.sh
+```
+
+**4. Access the analysis**
+
+Open your browser and go to the website http://localhost:8815
+    Username: **rstudio**
+
+**5. Run the analysis script**
+
 
 ## Dependencies:
 
