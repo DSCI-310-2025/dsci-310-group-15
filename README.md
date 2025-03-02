@@ -29,19 +29,19 @@ Use the following steps to reproduce the analysis in a containerized environment
 git clone https://github.com/DSCI-310-2025/dsci-310-group-15.git
 ```
 **2. Make sure the Docker is running, and then use to following bash command to set up environment**
+
 For Windows users:
 ```
-bash script/Wins_setup_jupyter.sh
+bash script/Wins_setup_analysis.sh
 ```
 For Mac users:
 ```
-bash script/Mac_setup_jupyter.sh
+bash script/Mac_setup_analysis.sh
 ```
 
 **4. Access the analysis**
 
-Open your browser and go to the website http://localhost:8815
-    Username: **rstudio**
+Open your browser and go to the website http://localhost:8815 with username: **rstudio**
 
 **5. Run the analysis script**
 
