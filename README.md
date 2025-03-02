@@ -29,6 +29,7 @@ Use the following steps to reproduce the analysis in a containerized environment
 git clone https://github.com/DSCI-310-2025/dsci-310-group-15.git
 ```
 **2. Make sure the Docker is running, and then use to following bash command to set up environment**
+
 For Windows users:
 ```
 bash script/Wins_setup_jupyter.sh
