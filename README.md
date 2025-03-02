@@ -32,11 +32,11 @@ git clone https://github.com/DSCI-310-2025/dsci-310-group-15.git
 
 For Windows users:
 ```
-bash script/Wins_setup_analysis.sh
+bash dsci-310-group-15/script/Wins_setup_analysis.sh
 ```
 For Mac users:
 ```
-bash script/Mac_setup_analysis.sh
+bash dsci-310-group-15/script/Mac_setup_analysis.sh
 ```
 
 **4. Access the analysis**
