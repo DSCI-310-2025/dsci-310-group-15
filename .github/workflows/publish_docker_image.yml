@@ -27,7 +27,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: your-dockerhub-username/your-repo-name
+          images: owenwen00/dsci310-group-15
           tags: |
             type=raw,value={{sha}},enable=${{github.ref_type != 'tag' }}
             type=raw,value=latest
