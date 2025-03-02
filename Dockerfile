@@ -37,4 +37,4 @@ COPY . /home/jovyan/
 EXPOSE 8888
 
 # Start JupyterLab when the container runs
-CMD ["jupyter", "lab", "--port=8888", "--ip=0.0.0.0", "--no-browser", "--allow-root"]
+CMD ["jupyter", "lab", "--port=8888", "--ip=0.0.0.0", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
