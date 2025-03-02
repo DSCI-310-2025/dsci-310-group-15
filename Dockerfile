@@ -24,7 +24,7 @@ RUN mamba install -y -c conda-forge r-base=4.4.2 \
 RUN R -e "install.packages('remotes', repos='https://cloud.r-project.org')"
 
 # Install R packages from CRAN with fixed versions
-RUN R -e "remotes::install_version('ggally', version='2.1.1', repos='https://cloud.r-project.org', dependencies=TRUE)"; \
+RUN RUN mamba install -y -c conda-forge r-ggally=2.1.1; \
     R -e "remotes::install_version('randomForest', version='4.7-1.2', repos='https://cloud.r-project.org')"; \
     R -e "remotes::install_version('caret', version='7.0-1', repos='https://cloud.r-project.org')"; \
     R -e "remotes::install_version('pROC', version='1.18.5', repos='https://cloud.r-project.org')"
@@ -37,4 +37,4 @@ COPY . /home/jovyan/
 EXPOSE 8888
 
 # Start JupyterLab when the container runs
-CMD ["jupyter", "lab", "--port=8888", "--ip=0.0.0.0", "--no-browser", "--allow-root"]
+CMD ["jupyter", "lab", "--port=8888", "--ip=0.0.0.0", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
