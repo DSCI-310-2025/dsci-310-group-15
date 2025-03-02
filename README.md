@@ -32,11 +32,11 @@ git clone https://github.com/DSCI-310-2025/dsci-310-group-15.git
 
 For Windows users:
 ```
-bash script/Wins_setup_jupyter.sh
+bash script/Wins_setup_analysis.sh
 ```
 For Mac users:
 ```
-bash script/Mac_setup_jupyter.sh
+bash script/Mac_setup_analysis.sh
 ```
 
 **4. Access the analysis**
