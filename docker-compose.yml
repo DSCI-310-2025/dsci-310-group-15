@@ -1,9 +1,0 @@
-version: '3'
-
-services:
-  my-analysis-env:
-    build: .  
-    ports:
-      - "8888:8888"  
-    volumes:
-      - .:/opt/notebooks/my-analysis  
