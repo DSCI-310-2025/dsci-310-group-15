@@ -45,6 +45,7 @@ Open your browser and go to the website http://localhost:8815
 
 **5. Run the analysis script**
 
+Install the ggally package in the Jupyter Notebook to run it completely. We don't install it by the Dockerfile because the download speed is very slow and may take five minutes.
 
 ## Dependencies:
 
