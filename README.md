@@ -41,7 +41,7 @@ bash dsci-310-group-15/script/Mac_setup_analysis.sh
 
 **4. Access the analysis**
 
-Open your browser and go to the website http://localhost:8815 with username: **rstudio**
+Open your browser and go to the website http://localhost:8815
 
 **5. Run the analysis script**
 
