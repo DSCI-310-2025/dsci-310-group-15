@@ -41,8 +41,7 @@ bash script/Mac_setup_jupyter.sh
 
 **4. Access the analysis**
 
-Open your browser and go to the website http://localhost:8815
-    Username: **rstudio**
+Open your browser and go to the website http://localhost:8815 with username: **rstudio**
 
 **5. Run the analysis script**
 
