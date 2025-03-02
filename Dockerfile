@@ -24,6 +24,7 @@ RUN mamba install -y -c conda-forge r-base=4.4.2 \
 RUN R -e "install.packages('remotes', repos='https://cloud.r-project.org')"
 
 # Install R packages from CRAN with fixed versions
+# The first RUN command is meanless, but it can keep the downloading speed fast???
 RUN RUN mamba install -y -c conda-forge r-ggally=2.1.1; \
     R -e "remotes::install_version('randomForest', version='4.7-1.2', repos='https://cloud.r-project.org')"; \
     R -e "remotes::install_version('caret', version='7.0-1', repos='https://cloud.r-project.org')"; \
