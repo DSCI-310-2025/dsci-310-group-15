@@ -27,6 +27,7 @@ RUN R -e "install.packages('remotes', repos='https://cloud.r-project.org')"
 # Install R packages from CRAN with fixed versions
 RUN R -e "remotes::install_version('caret', version='7.0-1', repos='https://cloud.r-project.org')"; \
     R -e "remotes::install_version('pROC', version='1.18.5', repos='https://cloud.r-project.org')"
+    
 
 RUN R -e "IRkernel::installspec(user = FALSE)"
 # Copy the entire project into the container
@@ -36,4 +37,4 @@ COPY . /home/jovyan/
 EXPOSE 8888
 
 # Start JupyterLab when the container runs
-CMD ["jupyter", "lab", "--port=8888", "--ip=0.0.0.0", "--no-browser", "--allow-root"]
+CMD ["jupyter", "lab", "--port=8888", "--ip=0.0.0.0", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
