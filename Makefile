@@ -14,8 +14,8 @@ all: data/processed_data.csv \
 		results/simplified_model_roc.png \
 		data/random_forest_auc.csv \
 		results/random_forest_roc.png \
-		reports/heart-attack-predication-analysis.html \
-		report/heart-attack-predication-analysis.pdf
+		reports/heart-attack-prediction-analysis.html \
+		reports/heart-attack-prediction-analysis.pdf
 
 # Step 1: Load the raw data
 data/processed_data.csv: data/heart_attack_prediction_india.csv scripts/load_data.R
@@ -80,11 +80,11 @@ data/random_forest_auc.csv results/random_forest_roc.png: data/heart_attack_data
 	--roc_output=results/random_forest_roc.png
 
 # render quarto report in HTML and PDF
-reports/heart-attack-predication-analysis.html: results reports/heart-attack-predication-analysis.qmd
-	quarto render reports/heart-attack-predication-analysis.qmd --to html
+reports/heart-attack-prediction-analysis.html: reports/heart-attack-prediction-analysis.qmd
+	quarto render reports/heart-attack-prediction-analysis.qmd --to html
 
-reports/heart-attack-predication-analysis.pdf: results reports/heart-attack-predication-analysis.qmd
-	quarto render reports/heart-attack-predication-analysis.qmd --to pdf
+reports/heart-attack-prediction-analysis.pdf: reports/heart-attack-prediction-analysis.qmd
+	quarto render reports/heart-attack-prediction-analysis.qmd --to pdf
 
 # Clean all generated files
 clean:
@@ -98,5 +98,5 @@ clean:
 			data/simplified_model_auc.csv \
 			data/random_forest_auc.csv
 	rm -rf results/*.png
-	rm -rf reports/heart-attack-predication-analysis.html \
-			reports/heart-attack-predication-analysis.pdf 
+	rm -rf reports/heart-attack-prediction-analysis.html \
+			reports/heart-attack-prediction-analysis.pdf 
