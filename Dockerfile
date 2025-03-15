@@ -25,8 +25,9 @@ RUN R -e "install.packages('remotes', repos='https://cloud.r-project.org')"
 
 
 # Install R packages from CRAN with fixed versions
-RUN R -e "remotes::install_version('caret', version='7.0-1', repos='https://cloud.r-project.org')"; \
-    R -e "remotes::install_version('pROC', version='1.18.5', repos='https://cloud.r-project.org')"
+RUN R -e "remotes::install_version('docopt', version='0.7.1',repos='https://cloud.r-project.org')" && \
+    R -e "remotes::install_version('caret', version='7.0-1', repos='https://cloud.r-project.org')" && \
+    R -e "remotes::install_version('pROC', version='1.18.5', repos='https://cloud.r-project.org')" 
     
 
 RUN R -e "IRkernel::installspec(user = FALSE)"
