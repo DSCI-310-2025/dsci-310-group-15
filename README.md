@@ -32,11 +32,11 @@ git clone https://github.com/DSCI-310-2025/dsci-310-group-15.git
 
 For Windows users:
 ```
-bash dsci-310-group-15/script/Wins_setup_analysis.sh
+bash dsci-310-group-15/data/script/Wins_setup_analysis.sh
 ```
 For Mac users:
 ```
-bash dsci-310-group-15/script/Mac_setup_analysis.sh
+bash dsci-310-group-15/data/script/Mac_setup_analysis.sh
 ```
 
 **4. Access the analysis**
@@ -45,6 +45,7 @@ Open your browser and go to the website http://localhost:8815
 
 **5. Run the analysis script**
 
+Install the ggally package in the Jupyter Notebook to run it completely. We don't install it by the Dockerfile because the download speed is very slow and may take five minutes.
 
 ## Dependencies:
 
