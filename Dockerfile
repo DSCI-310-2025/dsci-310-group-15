@@ -28,8 +28,13 @@ RUN R -e "install.packages('remotes', repos='https://cloud.r-project.org')"
 RUN R -e "remotes::install_version('docopt', version='0.7.1',repos='https://cloud.r-project.org')" && \
     R -e "remotes::install_version('caret', version='7.0-1', repos='https://cloud.r-project.org')" && \
     R -e "remotes::install_version('pROC', version='1.18.5', repos='https://cloud.r-project.org')" 
-    
 
+# Install Quarto version 1.6.42
+RUN curl -o quarto-linux-amd64.deb -L https://github.com/quarto-dev/quarto-cli/releases/download/v1.6.42/quarto-1.6.42-linux-amd64.deb && \
+    dpkg -i quarto-linux-amd64.deb && \
+    rm quarto-linux-amd64.deb
+
+# Install IRKernel for Jupyter
 RUN R -e "IRkernel::installspec(user = FALSE)"
 # Copy the entire project into the container
 COPY . /home/jovyan/
