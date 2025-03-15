@@ -202,14 +202,42 @@ cat("Model Accuracy:", accuracy_data$Model_Accuracy)
 ```
 :::
 
+::: {#tbl-simplified-auc}
+```{r}
+# Load necessary libraries
+library(readr)
+
+# Read AUC results
+auc_simplified <- read_csv("../data/simplified_model_auc.csv")
+
+# Print AUC value
+cat("Simplified Model AUC Value:", auc_simplified$AUC_Value)
+```
+:::
+
 ::: {#fig-corr-matrix}
-![ROC curve](../results/logistic_roc.png){width=50%}
+![ROC curve](../results/simplified_model_roc.png){width=50%}
 :::
 Although our logisit model's accuracy is not very bad (70%). The roc looks ugly and thus the auc is low.
 
 We need to try a more complex model on our data.
 
 ## Random Forest Model
+
+::: {#tbl-rf-auc}
+```{r}
+# Load necessary libraries
+library(readr)
+
+# Read AUC results
+auc_rf <- read_csv("../data/random_forest_auc.csv")
+
+# Print AUC value
+cat("Random Forest AUC Value:", auc_rf$Random_Forest_AUC)
+```
+:::
+
+
 ::: {#fig-random_forest_roc}
 ![Random Forest ROC](../results/random_forest_roc.png){width=50%}
 :::
