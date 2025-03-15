@@ -1,5 +1,5 @@
 # Define the final target: ensuring all results are produced
-all: data/modeling_data.csv results/eda_pairplot.png results/eda_corrplot.png results/logistic_roc.png results/random_forest_roc.png
+all: data/modeling_data.csv results/eda_pairplot.png results/eda_corrplot.png results/logistic_roc.png results/random_forest_roc.png 
 
 # Step 1: Load the raw data
 data/processed_data.csv: data/heart_attack_prediction_india.csv scripts/load_data.R
@@ -37,6 +37,14 @@ data/model_acc.csv: data/heart_attack_data_simplified.csv scripts/model_accuracy
 results/logistic_roc.png results/random_forest_roc.png: data/modeling_data.csv scripts/model_training.R
 	Rscript scripts/model_training.R --input=data/modeling_data.csv --output1=results/logistic_roc.png --output2=results/random_forest_roc.png
 
+# render quarto report in HTML and PDF
+reports/heart-attack-predication-analysis.html: results reports/heart-attack-predication-analysis.qmd
+	quarto render reports/heart-attack-predication-analysis.qmd --to html
+
+reports/heart-attack-predication-analysis.pdf: results reports/heart-attack-predication-analysis.qmd
+	quarto render reports/heart-attack-predication-analysis.qmd --to pdf
+
 # Clean all generated files
 clean:
 	rm -f data/processed_data.csv data/modeling_data.csv results/*.png
+    rm -rf reports/heart-attack-predication-analysis.html reports/reports/heart-attack-predication-analysis.pdf reports/reports/heart-attack-predication-analysis_files
