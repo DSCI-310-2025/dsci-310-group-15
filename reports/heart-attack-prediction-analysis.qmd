@@ -1,0 +1,227 @@
+---
+title: "Heart Attack Prediction in India"
+subtitle: "DSCI 310 Group Project"
+author: "Chengyou Xiang, Junhao Wen, Peng Zhong, ZiXun Fang"
+execute:
+  echo: false
+  message: false
+  warning: false
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    embed-resources: true
+editor: source
+bibliography: references.bib
+nocite: |
+  @Panday_2025
+---
+# Summary
+
+## EDA Insights: 
+- Correlation analysis highlighted LDL cholesterol as a strong predictor, while other lifestyle factors like smoking and obesity showed weaker associations than expected.
+
+## Model Performance:
+- Logistic Regression: Achieved an AUC of 0.518, indicating poor predictive power.
+- Random Forest: Significantly outperformed with an AUC of 0.907, demonstrating strong classification ability.
+
+## Key Takeaways：
+- Age, LDL cholesterol levels, alcohol consumption, and emergency response time were significantly associated with heart attack risk.
+- Machine learning models, particularly Random Forest, enhance heart attack risk prediction by capturing complex variable interactions.
+- Future research should integrate additional biomarkers, such as inflammatory markers, to refine predictive accuracy.
+
+# Introduction
+
+## Background Information
+
+Heart disease remains a leading cause of mortality worldwide, and early prediction of heart attack risk can significantly improve patient outcomes. Multiple research studies demonstrate that lifestyle choices and genetic characteristics along with pre-existing medical issues function as the main risk factors for heart attacks. The research requires deeper evaluation of heart attack risks in particular populations since regional background and demographic factors can create differences in risk factors.
+
+## Dataset Overview
+
+The Heart Attack Risk & Prediction Dataset in India serves as an extensive data collection for studying heart attack risk variables that affect Indian individuals. The dataset contains different indicators about demographic profiles, lifestyle practices, and medical background information that might affect heart attack probability. This dataset enables scientists to discover leading risk indicators of heart attacks in Indians while creating predictive models for heart attack identification programs.
+
+The dataset includes 26 attributes:
+
+::: {#tbl-dataset_attributes}
+| **Attribute**              |
+|----------------------------|
+| Patient ID                 |
+| State Name                 |
+| Age                        |
+| Gender                     |
+| Diabetes                   |
+| Hypertension               |
+| Obesity                    |
+| Smoking                    |
+| Alcohol Consumption        |
+| Physical Activity          |
+| Diet Score                 |
+| Cholesterol Level          |
+| Triglyceride Level         |
+| LDL Level                  |
+| HDL Level                  |
+| Systolic BP                |
+| Diastolic BP               |
+| Air Pollution Exposure     |
+| Family History             |
+| Stress Level               |
+| Healthcare Access          |
+| Heart Attack History       |
+| Emergency Response Time    |
+| Annual Income              |
+| Health Insurance           |
+| Heart Attack Risk          |
+
+Attributes included in the dataset.
+:::
+
+## Research Question
+
+The primary research question we aim to answer is:
+
+**Which factors are most strongly associated with heart attack risk?**
+
+To address this, we will use statistical and machine learning techniques to identify the most significant predictors of heart attack risk from the dataset. 
+
+## Literature Context
+
+Additionally, we will review existing literature on cardiovascular health, particularly studies that analyze heart attack risk factors in different populations. One relevant study is "Number of years with obesity and incident heart failure among US adults [@Ndumele_2014]." Research found that long-term obesity duration is an independent risk factor for heart damage, even in the absence of traditional risk factors like hypertension or diabetes. 
+
+Another research by WHO, "Cardiovascular diseases", examines how unhealthy lifestyle behaviors, including poor diet, physical inactivity, smoking, and excessive alcohol consumption, become major contributors to cardiovascular diseases [@WHO_2017]. 
+
+# Methods & Results
+
+## Exploratory Data Analysis (EDA)
+
+To start off, we will load the appropriate libraries and tidy the dataset. We want to make sure there is no Null Value in our dataset and not all variables are important to our research question.
+
+- Patient ID and State Names (These are meaningless to us)
+
+- Gender (We don't have to contain any bias in our research)
+
+::: {#tbl-tidy-dataset}
+```{r}
+# Load necessary libraries
+library(readr)
+library(knitr)
+
+# Read the cleaned data
+cleaned_data <- read_csv("../data/modeling_data.csv")
+
+# Show a preview as a formatted table
+knitr::kable(head(cleaned_data), caption = "A tidy dataset, with unnecessary columns removed")
+```
+:::
+
+::: {#tbl-model-summary}
+```{r}
+# Load necessary libraries
+library(readr)
+library(knitr)
+
+# Read the model summart
+model_results <- read_csv("../data/heart_attack_model_summary.csv")
+
+# Show a preview as a formatted table
+knitr::kable(head(model_results), caption = "Results of a logistic model using all attributes")
+```
+:::
+
+::: {#tbl-significant-vars}
+```{r}
+# Load necessary libraries
+library(readr)
+library(knitr)
+
+# Load the extracted significant variables
+significant_vars <- read_csv("../data/significant_vars.csv")
+
+# Display as a formatted table
+knitr::kable(significant_vars, caption = "Significant Variables in Logistic Regression Model")
+```
+:::
+
+We only want to contain significant attributes
+
+::: {#tbl-simplified-data}
+```{r}
+# Load necessary libraries
+library(readr)
+library(knitr)
+
+# Read the simplified dataset
+simplified_data <- read_csv("../data/heart_attack_data_simplified.csv")
+
+# Display as a formatted table
+knitr::kable(head(simplified_data), caption = "Simplified Dataset with Significant Variables")
+```
+:::
+
+If there are high correlation between two variables, we can choose one of them in our simplified model.
+
+::: {#fig-pair-plot}
+![A pairwise scatterplot of each of the variables in the simplified model](../results/eda_pairplot.png){width=100%}
+:::
+::: {#fig-corr-matrix}
+![A correlation heatmap of each of the variables in the simplified model](../results/eda_corrplot.png){width=100%}
+:::
+
+::: {#tbl-vif-results}
+```{r}
+# Load necessary libraries
+library(readr)
+library(knitr)
+
+# Read the VIF results
+vif_results <- read_csv("../data/heart_attack_vif.csv")
+
+# Display as a formatted table
+knitr::kable(vif_results, caption = "Variance Inflation Factor (VIF) for Logistic Regression Model")
+```
+:::
+
+We want to verify the VIFs of the simplified model to identify if multicollinearity exists
+
+All variables have low VIF value, which is a good sign
+
+Next we will split our simplified data into training (70%) and testing (30%)
+
+Now, let's test the accuracy:
+
+::: {#tbl-model-accuracy}
+```{r}
+# Load necessary libraries
+library(readr)
+
+# Read accuracy results
+accuracy_data <- read_csv("../data/model_acc.csv")
+
+# Print accuracy
+cat("Model Accuracy:", accuracy_data$Model_Accuracy)
+```
+:::
+
+::: {#fig-corr-matrix}
+![ROC curve](../results/logistic_roc.png){width=50%}
+:::
+Although our logisit model's accuracy is not very bad (70%). The roc looks ugly and thus the auc is low.
+
+We need to try a more complex model on our data.
+
+## Random Forest Model
+::: {#fig-random_forest_roc}
+![Random Forest ROC](../results/random_forest_roc.png){width=50%}
+:::
+By setting the appropriate parameters for our Random Forest model, we get an excellent model that can accurately predict the risk of heart attack.
+
+# Discussion
+
+Among the 26 variables examined, Age, Alcohol Consumption, LDL Cholesterol Level, and Emergency Response Time demonstrated notable correlations with heart attack risk. Notably, LDL level was found to be a significant predictor (p = 0.0328), aligning with prior studies that emphasize its role in cardiovascular diseases [@Ndumele_2014].
+
+Besides, we deploy two models to evaluated for predictive accuracy: a logistic regression model and a Random Forest model. The logistic regression model yielded an AUC value of 0.518, indicating poor discriminatory power. In contrast, the Random Forest model significantly outperformed with an AUC value of 0.907, demonstrating a strong ability to distinguish between individuals at high and low risk for heart attacks. The Random Forest model’s success can be attributed to its ability to capture complex interactions between risk factors.
+
+These findings emphasize the importance of LDL cholesterol levels in heart attack risk prediction. The strong performance of the Random Forest model suggests that non-linear relationships play a crucial role in cardiovascular risk assessment. Future research should consider incorporating additional physiological indicators, such as inflammatory markers, which have been shown to further refine heart disease prediction models [@Ridker_2018].
+
+# References
+
