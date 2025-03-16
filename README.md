@@ -47,6 +47,12 @@ Open your browser and go to the website http://localhost:8815
 
 Install the ggally package in the Jupyter Notebook to run it completely. We don't install it by the Dockerfile because the download speed is very slow and may take five minutes.
 
+**6. Makefile Command**
+
+The Makefile has all the targets needed to render the final Quarto report. The "all" target is to run the entire analysis from top to bottom by running "make all" at the command line. The "clean" target is to deletes all generate data and files by running "make clean" at the command line.
+
+Each step that running through the analysis is commented in the Makefile. The HTML version of the report is saved to reports/heart-attack-prediction-analysis.html. The PDF version will be saved to reports/heart-attack-prediction-analysis.pdf
+
 ## Dependencies:
 
 R version 4.2.2, Jupyter and R packages listed in [`environment.yml`](https://github.com/DSCI-310-2025/dsci-310-group-15/blob/main/environment.yml).
