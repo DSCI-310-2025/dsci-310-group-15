@@ -47,6 +47,7 @@ cor_data <- as_tibble(cor_matrix, rownames = "var1") %>%
 
 cor_plot <- ggplot(cor_data, aes(x = var1, y = var2, fill = corr)) +
     geom_tile(color = "white") +
+    geom_text(aes(label = round(corr, 2)), color = "black", size = 3) + 
     scale_fill_distiller(palette = "YlOrRd", direction = 1, limits = c(-1,1)) +
     labs(title = "Correlation Heatmap", x = "", y = "") +
     theme_minimal() +
@@ -54,5 +55,3 @@ cor_plot <- ggplot(cor_data, aes(x = var1, y = var2, fill = corr)) +
 
 # Save the correlation heatmap
 ggsave(filename = args$output2, plot = cor_plot, width = 10, height = 8, dpi = 300)
-
-print("EDA visualization saved.")

@@ -17,31 +17,31 @@ all: data/processed_data.csv \
 		reports/heart-attack-prediction-analysis.html \
 		reports/heart-attack-prediction-analysis.pdf
 
-# Step 1: Load the raw data
+# Step 1: Load the raw data and processes it into a structured format.
 data/processed_data.csv: data/heart_attack_prediction_india.csv scripts/load_data.R
 	Rscript scripts/load_data.R \
 	--input=data/heart_attack_prediction_india.csv \
 	--output=data/processed_data.csv
 
-# Step 2: Clean and preprocess the data
+# Step 2: Clean and preprocess the data, handling missing values and data transformations
 data/modeling_data.csv: data/processed_data.csv scripts/clean_data.R
 	Rscript scripts/clean_data.R \
 	--input=data/processed_data.csv \
 	--output=data/modeling_data.csv
 
-# Step 3
+# Step 3: Generate a summary of the statistical model built from the data
 data/heart_attack_model_summary.csv: data/modeling_data.csv scripts/model_summary.R
 	Rscript scripts/model_summary.R \
 	--input=data/modeling_data.csv \
 	--output=data/heart_attack_model_summary.csv
 
-# Step 4
+# Step 4: Identify the most significant predictors in the dataset
 data/significant_vars.csv: data/modeling_data.csv scripts/model_sig.R
 	Rscript scripts/model_sig.R \
 	--input=data/modeling_data.csv \
 	--output=data/significant_vars.csv
 
-#step 5
+#step 5: Simplify the dataset by selecting only the most relevant features
 data/heart_attack_data_simplified.csv: data/modeling_data.csv scripts/simplify_data.R
 	Rscript scripts/simplify_data.R \
 	--input=data/modeling_data.csv \
@@ -54,13 +54,13 @@ results/eda_pairplot.png results/eda_corrplot.png: data/heart_attack_data_simpli
 	--output1=results/eda_pairplot.png \
 	--output2=results/eda_corrplot.png
 
-# Step 7
+# Step 7: Calculate Variance Inflation Factor (VIF)
 data/heart_attack_vif.csv: data/heart_attack_data_simplified.csv scripts/model_vif.R
 	Rscript scripts/model_vif.R \
 	--input=data/heart_attack_data_simplified.csv \
 	--output=data/heart_attack_vif.csv
 
-# Step 8
+# Step 8: Evaluate Model Accuracy
 data/model_acc.csv: data/heart_attack_data_simplified.csv scripts/model_accuracy.R
 	Rscript scripts/model_accuracy.R \
 	--input=data/heart_attack_data_simplified.csv \

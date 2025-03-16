@@ -7,6 +7,10 @@ execute:
   message: false
   warning: false
 format: 
+  pdf:
+    number-sections: true
+    tables: true
+    keep-tex: false
   html:
     toc: true
     toc-depth: 2
@@ -43,7 +47,7 @@ The Heart Attack Risk & Prediction Dataset in India serves as an extensive data 
 
 The dataset includes 26 attributes:
 
-::: {#tbl-dataset_attributes}
+::: {#tbl-dataset_attributes .cell tbl-cap="Dataset Attributes"}
 | **Attribute**              |
 |----------------------------|
 | Patient ID                 |
@@ -161,10 +165,10 @@ knitr::kable(head(simplified_data), caption = "Simplified Dataset with Significa
 If there are high correlation between two variables, we can choose one of them in our simplified model.
 
 ::: {#fig-pair-plot}
-![A pairwise scatterplot of each of the variables in the simplified model](../results/eda_pairplot.png){width=100%}
+![](../results/eda_pairplot.png){fig-cap="A pairwise scatterplot of each of the variables in the simplified model"}
 :::
 ::: {#fig-corr-matrix}
-![A correlation heatmap of each of the variables in the simplified model](../results/eda_corrplot.png){width=100%}
+![](../results/eda_corrplot.png){fig-cap="A correlation heatmap of each of the variables in the simplified model"}
 :::
 
 ::: {#tbl-vif-results}
@@ -216,7 +220,7 @@ cat("Simplified Model AUC Value:", auc_simplified$AUC_Value)
 :::
 
 ::: {#fig-corr-matrix}
-![ROC curve](../results/simplified_model_roc.png){width=50%}
+![](../results/simplified_model_roc.png){fig-cap="ROC curve"}
 :::
 Although our logisit model's accuracy is not very bad (70%). The roc looks ugly and thus the auc is low.
 
@@ -239,7 +243,7 @@ cat("Random Forest AUC Value:", auc_rf$Random_Forest_AUC)
 
 
 ::: {#fig-random_forest_roc}
-![Random Forest ROC](../results/random_forest_roc.png){width=50%}
+![](../results/random_forest_roc.png){fig-cap="Random Forest ROC"}
 :::
 By setting the appropriate parameters for our Random Forest model, we get an excellent model that can accurately predict the risk of heart attack.
 
