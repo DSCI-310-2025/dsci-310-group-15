@@ -29,6 +29,16 @@ RUN R -e "remotes::install_version('docopt', version='0.7.1',repos='https://clou
     R -e "remotes::install_version('caret', version='7.0-1', repos='https://cloud.r-project.org')" && \
     R -e "remotes::install_version('pROC', version='1.18.5', repos='https://cloud.r-project.org')" 
 
+# Install Tinytex
+RUN R -e "tinytex::install_tinytex()" && \
+    R -e "tinytex::tlmgr_install(c('pdfcrop', 'hyperref', 'latex-bin'))"
+
+# Install libfontconfig
+RUN apt-get update && apt-get install -y \
+    libfreetype6 \
+    libfontconfig1 \
+    && apt-get clean
+
 # Install Quarto version 1.6.42
 RUN curl -o quarto-linux-amd64.deb -L https://github.com/quarto-dev/quarto-cli/releases/download/v1.6.42/quarto-1.6.42-linux-amd64.deb && \
     dpkg -i quarto-linux-amd64.deb && \
