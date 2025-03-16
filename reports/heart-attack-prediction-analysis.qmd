@@ -109,11 +109,18 @@ To start off, we will load the appropriate libraries and tidy the dataset. We wa
 # Load necessary libraries
 library(readr)
 library(knitr)
+library(dplyr)
 
 # Read the cleaned data
 cleaned_data <- read_csv("../data/modeling_data.csv")
 
 # Show a preview as a formatted table
+if (knitr::is_latex_output()) {
+  cleaned_data <- cleaned_data %>%
+    select(1:7)
+}
+
+
 knitr::kable(head(cleaned_data), caption = "A tidy dataset, with unnecessary columns removed")
 ```
 :::
