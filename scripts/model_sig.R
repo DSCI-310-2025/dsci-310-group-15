@@ -9,6 +9,7 @@ library(docopt)
 library(dplyr)
 library(readr)
 library(broom)
+source("R/get_significant_variables.R")
 
 # Parse command-line arguments
 args <- docopt(doc)
@@ -16,15 +17,8 @@ args <- docopt(doc)
 # Read the cleaned dataset
 heart_attack_data_clean <- read_csv(args$input)
 
-# Train logistic regression model
-heart_attack_model <- glm(Heart_Attack_Risk ~ .,
-                          data = heart_attack_data_clean,
-                          family = binomial(link = 'logit'))
-
-# Extract significant variables (p-value < 0.15)
-significant_vars <- tidy(heart_attack_model) |>
-    filter(term != "(Intercept)" & p.value < 0.15) |>
-    pull(term)
+# Extract significant variables (p-value < 0.15) in logistic regression model
+significant_vars <- significant_vars <- get_significant_variables(heart_attack_data_clean, target = "Heart_Attack_Risk", p_thresh = 0.15)
 
 # Save significant variables to a CSV file
 write_csv(data.frame(Significant_Variables = significant_vars), args$output)

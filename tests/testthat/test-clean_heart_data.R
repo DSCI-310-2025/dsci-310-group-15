@@ -1,8 +1,10 @@
 library(testthat)
 source("../../R/clean_heart_data.R")
+source("helper.R")
 
 # Expected use case: function should clean and convert columns correctly
 test_that("clean_heart_data returns cleaned data frame", {
+  test_df <- make_heart_data(50)
   df_cleaned <- clean_heart_data(test_df)
 
   # 1. Should return a data.frame or tibble
@@ -17,6 +19,7 @@ test_that("clean_heart_data returns cleaned data frame", {
 
 # Edge case: input is an empty tibble
 test_that("clean_heart_data returns empty tibble if given empty tibble", {
+  test_df <- make_heart_data(50)
   empty_input <- test_df[0, ]
   df_cleaned <- clean_heart_data(empty_input)
 
@@ -26,6 +29,7 @@ test_that("clean_heart_data returns empty tibble if given empty tibble", {
 
 # Error case: input is not a data frame
 test_that("clean_heart_data throws error for non-dataframe input", {
+  test_df <- make_heart_data(50)
   expect_error(clean_heart_data("not a dataframe"))
   expect_error(clean_heart_data(list(a = 1, b = 2)))
 })
