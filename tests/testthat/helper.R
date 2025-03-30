@@ -2,6 +2,36 @@
 
 library(tibble)
 
+# Generate a mixed-type dataset (factor + numeric) for correlation testing
+make_mixed_type_data <- function(n = 10) {
+  tibble::tibble(
+    A = as.factor(sample(c("yes", "no"), n, replace = TRUE)),
+    B = as.factor(sample(c("high", "low"), n, replace = TRUE)),
+    C = rnorm(n),
+    D = sample(1:100, n, replace = TRUE)
+  )
+}
+
+# Generate an all-numeric dataset
+make_all_numeric_data <- function(n = 10) {
+  tibble::tibble(
+    X = rnorm(n),
+    Y = rnorm(n),
+    Z = rnorm(n)
+  )
+}
+
+# Generate a dataset with missing values
+make_data_with_na_for_correlation <- function(n = 10) {
+  df <- tibble::tibble(
+    X = c(NA, rnorm(n - 1)),
+    Y = rnorm(n),
+    Z = c(rnorm(n - 2), NA, NA)
+  )
+  return(df)
+}
+
+
 # Simulate a basic dataset with a binary outcome
 make_fake_heart_data <- function(n = 10) {
   set.seed(123)
