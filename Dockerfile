@@ -18,6 +18,8 @@ RUN mamba install -y -c conda-forge r-base=4.4.2 \
     r-corrplot=0.95 \
     r-car=3.1-3 \
     r-randomforest=4.7-1.2 \
+    r-testthat=3.2.3 \
+    r-docopt=0.7.1 \
     && mamba clean --all -f -y  # Clean up cache to reduce image size
 
 # Install remotes package for installing specific versions from CRAN
@@ -25,8 +27,7 @@ RUN R -e "install.packages('remotes', repos='https://cloud.r-project.org')"
 
 
 # Install R packages from CRAN with fixed versions
-RUN R -e "remotes::install_version('docopt', version='0.7.1',repos='https://cloud.r-project.org')" && \
-    R -e "remotes::install_version('caret', version='7.0-1', repos='https://cloud.r-project.org')" && \
+RUN R -e "remotes::install_version('caret', version='7.0-1', repos='https://cloud.r-project.org')" && \
     R -e "remotes::install_version('pROC', version='1.18.5', repos='https://cloud.r-project.org')" 
 
 # Install Tinytex
