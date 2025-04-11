@@ -76,7 +76,25 @@ make test
 
 ## Dependencies:
 
-R version 4.2.2, Jupyter and R packages listed in [`environment.yml`](https://github.com/DSCI-310-2025/dsci-310-group-15/blob/main/environment.yml).
+R version 4.2.2, Jupyter and
+```
+- tidyverse (2.0.0)  
+- ggplot2 (3.5.1)  
+- dplyr (1.1.4)  
+- readr (2.1.5)
+- broom (1.0.7)  
+- GGally (2.2.1)  
+- corrplot (0.95)  
+- car (3.1-3)  
+- glmnet (4.1-8)  
+- randomForest (4.7-1.2)  
+- caret (7.0-1)  
+- pROC (1.18.5)  
+- testthat (3.2.3)  
+- docopt (0.7.1)  
+- repr (1.1.7)  
+- IRkernel (1.3.2)  
+```
 
 ## License Information
 
