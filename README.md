@@ -98,4 +98,4 @@ R version 4.2.2, Jupyter and
 
 ## License Information
 
-This project is under the [MIT open source license](https://opensource.org/licenses/MIT). See [the license file](https://github.com/DSCI-310-2025/dsci-310-group-15/blob/main/LICENSE.md) for more information. 
+This project is under the [MIT open source license](https://opensource.org/licenses/MIT). See [the license file](https://github.com/DSCI-310-2025/dsci-310-group-15/blob/main/LICENSE.md) for more information.
