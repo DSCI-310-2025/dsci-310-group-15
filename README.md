@@ -48,7 +48,7 @@ Open your browser and go to the website http://localhost:8815
 
 Open heart-attack-prediction-analysis.ipynb in Jupyter to read the annlysis.
 
-**6. Makefile Command**
+## Makefile Command
 
 The Makefile has all the targets needed to render the final Quarto report. The "all" target is to run the entire analysis from top to bottom by running
 ```
