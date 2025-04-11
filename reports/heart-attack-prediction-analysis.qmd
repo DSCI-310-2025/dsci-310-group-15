@@ -48,35 +48,22 @@ The Heart Attack Risk & Prediction Dataset in India serves as an extensive data 
 The dataset includes 26 attributes:
 
 ::: {#tbl-dataset_attributes .cell tbl-cap="Dataset Attributes"}
-| **Attribute**              |
-|----------------------------|
-| Patient ID                 |
-| State Name                 |
-| Age                        |
-| Gender                     |
-| Diabetes                   |
-| Hypertension               |
-| Obesity                    |
-| Smoking                    |
-| Alcohol Consumption        |
-| Physical Activity          |
-| Diet Score                 |
-| Cholesterol Level          |
-| Triglyceride Level         |
-| LDL Level                  |
-| HDL Level                  |
-| Systolic BP                |
-| Diastolic BP               |
-| Air Pollution Exposure     |
-| Family History             |
-| Stress Level               |
-| Healthcare Access          |
-| Heart Attack History       |
-| Emergency Response Time    |
-| Annual Income              |
-| Health Insurance           |
-| Heart Attack Risk          |
+```{r}
+library(readr)
+library(dplyr)
+library(knitr)
 
+# read the data once
+ha <- read_csv("../data/raw/heart_attack_prediction_india.csv", show_col_types = FALSE)
+
+# build a tidy table of attribute names
+attr_tbl <- tibble(
+  `#`   = seq_along(names(ha)),
+  Name  = names(ha)
+)
+
+knitr::kable(attr_tbl, caption = "Heart‑Attack‑Risk‑&‑Prediction Dataset attributes")
+```
 Attributes included in the dataset.
 :::
 
@@ -112,7 +99,7 @@ library(knitr)
 library(dplyr)
 
 # Read the cleaned data
-cleaned_data <- read_csv("../data/modeling_data.csv")
+cleaned_data <- read_csv("../data/processed/modeling_data.csv")
 
 # Show a preview as a formatted table
 if (knitr::is_latex_output()) {
@@ -132,7 +119,7 @@ library(readr)
 library(knitr)
 
 # Read the model summart
-model_results <- read_csv("../data/heart_attack_model_summary.csv")
+model_results <- read_csv("../data/processed/heart_attack_model_summary.csv")
 
 # Show a preview as a formatted table
 knitr::kable(head(model_results), caption = "Results of a logistic model using all attributes")
@@ -146,7 +133,7 @@ library(readr)
 library(knitr)
 
 # Load the extracted significant variables
-significant_vars <- read_csv("../data/significant_vars.csv")
+significant_vars <- read_csv("../data/processed/significant_vars.csv")
 
 # Display as a formatted table
 knitr::kable(significant_vars, caption = "Significant Variables in Logistic Regression Model")
@@ -162,7 +149,7 @@ library(readr)
 library(knitr)
 
 # Read the simplified dataset
-simplified_data <- read_csv("../data/heart_attack_data_simplified.csv")
+simplified_data <- read_csv("../data/processed/heart_attack_data_simplified.csv")
 
 # Display as a formatted table
 knitr::kable(head(simplified_data), caption = "Simplified Dataset with Significant Variables")
@@ -185,7 +172,7 @@ library(readr)
 library(knitr)
 
 # Read the VIF results
-vif_results <- read_csv("../data/heart_attack_vif.csv")
+vif_results <- read_csv("../data/processed/heart_attack_vif.csv")
 
 # Display as a formatted table
 knitr::kable(vif_results, caption = "Variance Inflation Factor (VIF) for Logistic Regression Model")
@@ -206,7 +193,7 @@ Now, let's test the accuracy:
 library(readr)
 
 # Read accuracy results
-accuracy_data <- read_csv("../data/model_acc.csv")
+accuracy_data <- read_csv("../data/processed/model_acc.csv")
 
 # Print accuracy
 cat("Model Accuracy:", accuracy_data$Model_Accuracy)
@@ -219,7 +206,7 @@ cat("Model Accuracy:", accuracy_data$Model_Accuracy)
 library(readr)
 
 # Read AUC results
-auc_simplified <- read_csv("../data/simplified_model_auc.csv")
+auc_simplified <- read_csv("../data/processed/simplified_model_auc.csv")
 
 # Print AUC value
 cat("Simplified Model AUC Value:", auc_simplified$AUC_Value)
@@ -241,7 +228,7 @@ We need to try a more complex model on our data.
 library(readr)
 
 # Read AUC results
-auc_rf <- read_csv("../data/random_forest_auc.csv")
+auc_rf <- read_csv("../data/processed/random_forest_auc.csv")
 
 # Print AUC value
 cat("Random Forest AUC Value:", auc_rf$Random_Forest_AUC)

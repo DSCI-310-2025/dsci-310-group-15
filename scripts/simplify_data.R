@@ -20,4 +20,4 @@ heart_attack_data_simplified <- heart_attack_data_clean |>
     select(Age, Alcohol_Consumption, LDL_Level, Emergency_Response_Time, Heart_Attack_Risk)
 
 # Save the simplified dataset
-write_csv(heart_attack_data_simplified, "data/heart_attack_data_simplified.csv")
+write_csv(heart_attack_data_simplified, args$output)

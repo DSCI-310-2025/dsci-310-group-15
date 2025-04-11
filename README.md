@@ -28,15 +28,18 @@ Use the following steps to reproduce the analysis in a containerized environment
 ```
 git clone https://github.com/DSCI-310-2025/dsci-310-group-15.git
 ```
+```
+cd dsci-310-group-15
+```
 **2. Make sure the Docker is running, and then use to following bash command to set up environment**
 
 For Windows users:
 ```
-bash dsci-310-group-15/data/script/Wins_setup_analysis.sh
+bash data/script/Wins_setup_analysis.sh
 ```
 For Mac users:
 ```
-bash dsci-310-group-15/data/script/Mac_setup_analysis.sh
+bash data/script/Mac_setup_analysis.sh
 ```
 
 **4. Access the analysis**
@@ -45,18 +48,59 @@ Open your browser and go to the website http://localhost:8815
 
 **5. Run the analysis script**
 
-Install the ggally package in the Jupyter Notebook to run it completely. We don't install it by the Dockerfile because the download speed is very slow and may take five minutes.
+Open heart-attack-prediction-analysis.ipynb in Jupyter to read the annlysis.
 
-**6. Makefile Command**
+## Makefile Command
 
-The Makefile has all the targets needed to render the final Quarto report. The "all" target is to run the entire analysis from top to bottom by running "make all" at the command line. The "clean" target is to deletes all generate data and files by running "make clean" at the command line.
+The Makefile has all the targets needed to render the final Quarto report. The "all" target is to run the entire analysis from top to bottom by running
+```
+make all
+```
+Now you can read the analysis in html
+```
+open reports/heart-attack-prediction-analysis.html
+```
+and in pdf
+```
+open reports/heart-attack-prediction-analysis.pdf
+```
+The "clean" target is to deletes all generate data and files by running 
+```
+make clean
+```
 
-Each step that running through the analysis is commented in the Makefile. The HTML version of the report is saved to reports/heart-attack-prediction-analysis.html. The PDF version will be saved to reports/heart-attack-prediction-analysis.pdf
+We abstracted some functions from our scripts into the R/ folder with test cases in tests/testthat/.
+
+You can run the tests
+```
+make test
+```
 
 ## Dependencies:
 
-R version 4.2.2, Jupyter and R packages listed in [`environment.yml`](https://github.com/DSCI-310-2025/dsci-310-group-15/blob/main/environment.yml).
+R version 4.2.2, Jupyter and
+```
+- tidyverse (2.0.0)  
+- ggplot2 (3.5.1)  
+- dplyr (1.1.4)  
+- readr (2.1.5)
+- broom (1.0.7)  
+- GGally (2.2.1)  
+- corrplot (0.95)  
+- car (3.1-3)  
+- glmnet (4.1-8)  
+- randomForest (4.7-1.2)  
+- caret (7.0-1)  
+- pROC (1.18.5)  
+- testthat (3.2.3)  
+- docopt (0.7.1)  
+- repr (1.1.7)  
+- IRkernel (1.3.2)  
+```
 
 ## License Information
 
-This project is under the [MIT open source license](https://opensource.org/licenses/MIT). See [the license file](https://github.com/DSCI-310-2025/dsci-310-group-15/blob/main/LICENSE.md) for more information. 
+- For code objects: [MIT License](LICENSE.md)
+- For non-code objects: [Creative Commons](LICENSE-CC.md)
+
+![GitHub license](https://img.shields.io/github/license/DSCI-310-2025/dsci-310-group-15)
