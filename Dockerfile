@@ -7,11 +7,11 @@ WORKDIR /home/jovyan
 # Install R 4.4.2 and required R packages from Conda
 RUN mamba install -y -c conda-forge r-base=4.4.2 \
     jupyterlab \
-    r-irkernel \
+    r-irkernel=1.3.2 \
     r-tidyverse=2.0.0 \
     r-repr=1.1.7 \
     r-broom=1.0.7 \
-    r-ggally \
+    r-ggally=2.2.1 \
     r-glmnet=4.1-8 \
     r-dplyr=1.1.4 \
     r-ggplot2=3.5.1 \
