@@ -48,35 +48,22 @@ The Heart Attack Risk & Prediction Dataset in India serves as an extensive data 
 The dataset includes 26 attributes:
 
 ::: {#tbl-dataset_attributes .cell tbl-cap="Dataset Attributes"}
-| **Attribute**              |
-|----------------------------|
-| Patient ID                 |
-| State Name                 |
-| Age                        |
-| Gender                     |
-| Diabetes                   |
-| Hypertension               |
-| Obesity                    |
-| Smoking                    |
-| Alcohol Consumption        |
-| Physical Activity          |
-| Diet Score                 |
-| Cholesterol Level          |
-| Triglyceride Level         |
-| LDL Level                  |
-| HDL Level                  |
-| Systolic BP                |
-| Diastolic BP               |
-| Air Pollution Exposure     |
-| Family History             |
-| Stress Level               |
-| Healthcare Access          |
-| Heart Attack History       |
-| Emergency Response Time    |
-| Annual Income              |
-| Health Insurance           |
-| Heart Attack Risk          |
+```{r}
+library(readr)
+library(dplyr)
+library(knitr)
 
+# read the data once
+ha <- read_csv("../data/raw/heart_attack_prediction_india.csv", show_col_types = FALSE)
+
+# build a tidy table of attribute names
+attr_tbl <- tibble(
+  `#`   = seq_along(names(ha)),
+  Name  = names(ha)
+)
+
+knitr::kable(attr_tbl, caption = "Heart‑Attack‑Risk‑&‑Prediction Dataset attributes")
+```
 Attributes included in the dataset.
 :::
 
