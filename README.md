@@ -100,7 +100,7 @@ R version 4.2.2, Jupyter and
 
 ## License Information
 
-- For code objects: [MIT License](LICENSE)
-- For non-code objects: [Creative Commons](LICENSE-CC)
+- For code objects: [MIT License](LICENSE.md)
+- For non-code objects: [Creative Commons](LICENSE-CC.md)
 
 ![GitHub license](https://img.shields.io/github/license/DSCI-310-2025/dsci-310-group-15)
