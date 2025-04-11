@@ -27,16 +27,17 @@ Use the following steps to reproduce the analysis in a containerized environment
 **1. From your terminal, use the following bash command to clone this repo to your local working directory**
 ```
 git clone https://github.com/DSCI-310-2025/dsci-310-group-15.git
+cd dsci-310-group-15
 ```
 **2. Make sure the Docker is running, and then use to following bash command to set up environment**
 
 For Windows users:
 ```
-bash dsci-310-group-15/data/script/Wins_setup_analysis.sh
+bash data/script/Wins_setup_analysis.sh
 ```
 For Mac users:
 ```
-bash dsci-310-group-15/data/script/Mac_setup_analysis.sh
+bash data/script/Mac_setup_analysis.sh
 ```
 
 **4. Access the analysis**
@@ -55,18 +56,23 @@ make all
 ```
 Now you can read the analysis in html
 ```
-bash dsci-310-group-15/data/script/html_reader.sh
+open reports/heart-attack-prediction-analysis.html
 ```
 and in pdf
 ```
-bash dsci-310-group-15/data/script/pdf_reader.sh
+open reports/heart-attack-prediction-analysis.pdf
 ```
 The "clean" target is to deletes all generate data and files by running 
 ```
 make clean
 ```
 
-Each step that running through the analysis is commented in the Makefile. The HTML version of the report is saved to reports/heart-attack-prediction-analysis.html. The PDF version will be saved to reports/heart-attack-prediction-analysis.pdf
+We abstracted some functions from our scripts into the R/ folder with test cases in tests/testthat/.
+
+You can run the tests
+```
+make test
+```
 
 ## Dependencies:
 

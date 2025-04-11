@@ -100,3 +100,7 @@ clean:
 	rm -rf results/*.png
 	rm -rf reports/heart-attack-prediction-analysis.html \
 			reports/heart-attack-prediction-analysis.pdf 
+
+# Test all tests
+test:
+	Rscript -e "testthat::test_dir('tests/testthat')"
