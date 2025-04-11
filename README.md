@@ -53,6 +53,14 @@ The Makefile has all the targets needed to render the final Quarto report. The "
 ```
 make all
 ```
+Now you can read the analysis in html
+```
+bash dsci-310-group-15/data/script/html_reader.sh
+```
+and in pdf
+```
+bash dsci-310-group-15/data/script/pdf_reader.sh
+```
 The "clean" target is to deletes all generate data and files by running 
 ```
 make clean
