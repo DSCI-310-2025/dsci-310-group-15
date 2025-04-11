@@ -27,6 +27,8 @@ Use the following steps to reproduce the analysis in a containerized environment
 **1. From your terminal, use the following bash command to clone this repo to your local working directory**
 ```
 git clone https://github.com/DSCI-310-2025/dsci-310-group-15.git
+```
+```
 cd dsci-310-group-15
 ```
 **2. Make sure the Docker is running, and then use to following bash command to set up environment**
@@ -98,4 +100,7 @@ R version 4.2.2, Jupyter and
 
 ## License Information
 
-This project is under the [MIT open source license](https://opensource.org/licenses/MIT). See [the license file](https://github.com/DSCI-310-2025/dsci-310-group-15/blob/main/LICENSE.md) for more information.
+- For code objects: [MIT License](LICENSE)
+- For non-code objects: [Creative Commons](LICENSE-CC)
+
+![GitHub license](https://img.shields.io/github/license/DSCI-310-2025/dsci-310-group-15)
