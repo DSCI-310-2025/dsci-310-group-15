@@ -9,7 +9,7 @@ library(docopt)
 library(dplyr)
 library(readr)
 library(broom)
-source("R/get_significant_variables.R")
+library(heartpredictr)
 
 # Parse command-line arguments
 args <- docopt(doc)
