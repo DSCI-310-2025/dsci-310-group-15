@@ -12,6 +12,7 @@ library(readr)
 library(dplyr)
 library(ggplot2)
 library(pROC)
+library(heartpredictr)
 
 # Parse command-line arguments
 args <- docopt(doc)
@@ -20,17 +21,13 @@ args <- docopt(doc)
 heart_attack_data_simplified <- read_csv(args$input)
 
 # Ensure categorical variables are factors
-heart_attack_data_simplified <- heart_attack_data_simplified |>
-    mutate(Heart_Attack_Risk = as.factor(Heart_Attack_Risk))
+splits <- prepare_heart_data(file_path = args$input,
+                             target_col = "Heart_Attack_Risk",
+                             train_ratio = 0.7,
+                             random_seed = 123)
 
-# Set seed for reproducibility
-set.seed(123)
-
-# Split the dataset (70% training, 30% testing)
-data_split <- createDataPartition(heart_attack_data_simplified$Heart_Attack_Risk,
-                                  p = 0.7, list = FALSE)
-train_data <- heart_attack_data_simplified[data_split, ]
-test_data <- heart_attack_data_simplified[-data_split, ]
+train_data <- splits$train_data
+test_data  <- splits$test_data
 
 # Train logistic regression model
 simplified_model <- glm(

@@ -69,13 +69,6 @@ The "clean" target is to deletes all generate data and files by running
 make clean
 ```
 
-We abstracted some functions from our scripts into the R/ folder with test cases in tests/testthat/.
-
-You can run the tests
-```
-make test
-```
-
 ## Dependencies:
 
 R version 4.2.2, Jupyter and
