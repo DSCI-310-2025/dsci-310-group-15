@@ -216,9 +216,9 @@ cat("Simplified Model AUC Value:", auc_simplified$AUC_Value)
 ::: {#fig-corr-matrix}
 ![](../results/simplified_model_roc.png){fig-cap="ROC curve"}
 :::
-Although our logisit model's accuracy is not very bad (70%). The roc looks ugly and thus the auc is low.
+Despite our logistic model achieving 70% accuracy, its ROC curve reveals poor class discrimination. An effective model's ROC curve should rise sharply toward the upper-left corner, yielding a high AUC. Our current model's curve approximates a diagonal line, indicating performance barely better than random chance. This discrepancy prompted us to try a more complex model, such as Random Forest, which significantly improved the AUC and provided a more reliable classification performance.
 
-We need to try a more complex model on our data.
+We're implementing Random Forest as an alternative due to its overfitting resistance, ability to capture nonlinear relationships, and clear feature importance ranking. This approach offers an optimal balance of interpretability, performance, and computational efficiency compared to alternatives like Gradient Boosting or SVM.
 
 ## Random Forest Model
 
