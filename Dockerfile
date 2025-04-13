@@ -35,8 +35,9 @@ RUN R -e "remotes::install_version('caret', version='7.0-1', repos='https://clou
 RUN R -e "tinytex::install_tinytex()" && \
     R -e "tinytex::tlmgr_install(c('pdfcrop', 'hyperref', 'latex-bin'))"
 
-# Install heartpredictr package
-RUN R -e 'devtools::install_github("DSCI-310-2025/heartpredictr@1.0.0")'
+# Install devtools and heartpredictr package
+RUN R -e "install.packages('devtools', repos='https://cloud.r-project.org')" && \
+    R -e "devtools::install_github('DSCI-310-2025/heartpredictr@1.0.0')"
 
 # Install libfontconfig
 RUN apt-get update && apt-get install -y \
