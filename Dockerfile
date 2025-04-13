@@ -4,6 +4,21 @@ FROM condaforge/miniforge3:latest
 # Set the working directory inside the container
 WORKDIR /home/jovyan
 
+# Install system dependencies first
+RUN apt-get update && apt-get install -y \
+    libfreetype6 \
+    libfontconfig1 \
+    libssl-dev \
+    libcurl4-openssl-dev \
+    libxml2-dev \
+    libfontconfig1-dev \
+    libharfbuzz-dev \
+    libfribidi-dev \
+    libpng-dev \
+    libtiff5-dev \
+    libjpeg-dev \
+    && apt-get clean
+
 # Install R 4.4.2 and required R packages from Conda
 RUN mamba install -y -c conda-forge r-base=4.4.2 \
     jupyterlab \
@@ -22,27 +37,23 @@ RUN mamba install -y -c conda-forge r-base=4.4.2 \
     r-docopt=0.7.1 \
     && mamba clean --all -f -y  # Clean up cache to reduce image size
 
-# Install remotes package for installing specific versions from CRAN
-RUN R -e "install.packages('remotes', repos='https://cloud.r-project.org')"
-
+# Install remotes and tinytex packages
+RUN R -e "install.packages(c('remotes', 'tinytex'), repos='https://cloud.r-project.org')"
 
 # Install R packages from CRAN with fixed versions
 RUN R -e "remotes::install_version('caret', version='7.0-1', repos='https://cloud.r-project.org')" && \
-    R -e "remotes::install_version('pROC', version='1.18.5', repos='https://cloud.r-project.org')" &&\
+    R -e "remotes::install_version('pROC', version='1.18.5', repos='https://cloud.r-project.org')" && \
     R -e "remotes::install_version('pointblank', version = '0.12.2', repos = 'https://cran.r-project.org')"
 
 # Install Tinytex
 RUN R -e "tinytex::install_tinytex()" && \
     R -e "tinytex::tlmgr_install(c('pdfcrop', 'hyperref', 'latex-bin'))"
 
-# Install heartpredictr package
-RUN R -e 'devtools::install_github("DSCI-310-2025/heartpredictr@1.0.0")'
+# Install devtools with all dependencies
+RUN R -e "install.packages('devtools', repos='https://cloud.r-project.org', dependencies=TRUE)"
 
-# Install libfontconfig
-RUN apt-get update && apt-get install -y \
-    libfreetype6 \
-    libfontconfig1 \
-    && apt-get clean
+# Install heartpredictr package with verbose output for better error reporting
+RUN R -e "devtools::install_github('DSCI-310-2025/heartpredictr@1.0.0', verbose=TRUE)"
 
 # Install Quarto version 1.6.42
 RUN curl -o quarto-linux-amd64.deb -L https://github.com/quarto-dev/quarto-cli/releases/download/v1.6.42/quarto-1.6.42-linux-amd64.deb && \
@@ -51,6 +62,7 @@ RUN curl -o quarto-linux-amd64.deb -L https://github.com/quarto-dev/quarto-cli/r
 
 # Install IRKernel for Jupyter
 RUN R -e "IRkernel::installspec(user = FALSE)"
+
 # Copy the entire project into the container
 COPY . /home/jovyan/
 
