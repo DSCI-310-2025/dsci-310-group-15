@@ -30,7 +30,7 @@ nocite: |
 - Logistic Regression: Achieved an AUC of 0.518, indicating poor predictive power.
 - Random Forest: Significantly outperformed with an AUC of 0.907, demonstrating strong classification ability.
 
-## Key Takeaways：
+## Key Takeaways:
 - Age, LDL cholesterol levels, alcohol consumption, and emergency response time were significantly associated with heart attack risk.
 - Machine learning models, particularly Random Forest, enhance heart attack risk prediction by capturing complex variable interactions.
 - Future research should integrate additional biomarkers, such as inflammatory markers, to refine predictive accuracy.
@@ -59,10 +59,10 @@ ha <- read_csv("../data/raw/heart_attack_prediction_india.csv", show_col_types =
 # build a tidy table of attribute names
 attr_tbl <- tibble(
   `#`   = seq_along(names(ha)),
-  Name  = names(ha)
+  Attributes  = names(ha)
 )
 
-knitr::kable(attr_tbl, caption = "Heart‑Attack‑Risk‑&‑Prediction Dataset attributes")
+knitr::kable(attr_tbl, caption = "Heart-Attack-Risk-&-Prediction-Dataset-attributes")
 ```
 Attributes included in the dataset.
 :::
